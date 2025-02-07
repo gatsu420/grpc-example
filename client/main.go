@@ -25,7 +25,14 @@ func main() {
 		Gender:   model.UserGender_MALE,
 	}
 
+	user2 := &model.User{
+		Id:     "hahaha",
+		Name:   "kucing",
+		Gender: model.UserGender_FEMALE,
+	}
+
 	user := serviceUser()
 	user.Register(context.Background(), user1)
+	user.Register(context.Background(), user2)
 	user.List(context.Background(), &emptypb.Empty{})
 }

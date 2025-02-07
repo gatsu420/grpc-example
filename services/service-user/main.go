@@ -31,7 +31,8 @@ func (us UsersServer) Register(_ context.Context, param *model.User) (*emptypb.E
 }
 
 func (us UsersServer) List(context.Context, *emptypb.Empty) (*model.UserList, error) {
-	log.Println(localStorage)
+	log.Println("users: ", localStorage)
+
 	return localStorage, nil
 }
 
