@@ -40,9 +40,7 @@ func (ts *TasksServer) List(_ context.Context, _ *emptypb.Empty) (*model.TaskLis
 func main() {
 	srv := grpc.NewServer()
 	model.RegisterTasksServer(srv, &TasksServer{})
-	zlog.Info().Str(
-		"message", fmt.Sprintf("starting RPC server at %v", config.ServiceTasksPort),
-	)
+	zlog.Info().Msg(fmt.Sprintf("starting RPC server at %v", config.ServiceTasksPort))
 
 	listener, _ := net.Listen("tcp", config.ServiceTasksPort)
 	err := srv.Serve(listener)
