@@ -1,0 +1,31 @@
+syntax = "proto3";
+package model;
+option go_package = "./model";
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+
+enum TaskStatus {
+    UNSPECIFIED = 0;
+    BACKLOG = 1;
+    IN_PROGRESS = 2;
+    DONE = 3;
+    CANCELLED = 4;
+}
+
+message Task {
+    string id = 1;
+    string name = 2;
+    TaskStatus status = 3;
+    google.protobuf.Timestamp created_at = 4;
+    google.protobuf.Timestamp updated_at = 5;
+}
+
+message TaskList {
+    repeated Task list = 1;
+}
+
+service Tasks {
+    rpc Create(Task) returns (google.protobuf.Empty) {}
+    rpc List(google.protobuf.Empty) returns (TaskList) {}
+}
